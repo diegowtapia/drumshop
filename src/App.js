@@ -6,12 +6,14 @@ import ItemCount from "./components/ItemCount";
 
 
 function App() {
-  
+  const onAdd = (number) => {
+    console.log(`Se agregaron al carrito ${number} items`);
+  };  
   return (    
       <div className='App'>
         <NavBar/>
-        <ItemListContainer/>
-        <ItemCount stock={5} initial={0} />
+        <ItemListContainer opening="¡Bienvenidos al Drum Shop más grande de Argentina!"/>
+        <ItemCount stock={5} initial={0} onAdd={onAdd}/>
       </div>
   );
 }

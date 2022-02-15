@@ -24,7 +24,8 @@ const Counter = ({ stock, initial, onAdd }) => {
                 <Button
                     disabled={number === 0}
                     className={number === 0 ? 'disabled' : 'add'}
-                    onClick={() => onAdd(number)} variant="dark">
+                    onClick={() => onAdd(number)}
+                    variant="dark">
                     Agregar al carrito
                 </Button>
             </div>

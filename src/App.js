@@ -1,20 +1,24 @@
 import React from 'react';
 import './App.css';
-import ItemListContainer from './components/ItemListContainer';
-import NavBar from "./components/NavBar";
-import ItemCount from "./components/ItemCount";
-
+import ItemCount from "../src/components/ItemCount/ItemCount";
+//import Rutas from '../src/components/routes/index';
+import ItemListContainer from "../src/components/ItemListContainer/ItemList";
+import NavBar from './components/NavBar/NavBar';
 
 function App() {
   const onAdd = (number) => {
-    console.log(`Se agregaron al carrito ${number} items`);
+    alert(`Se agregaron al carrito ${number} items`);
   };  
   return (    
+    <React.Fragment>
       <div className='App'>
-        <NavBar/>
-        <ItemListContainer opening="¡Bienvenidos al Drum Shop más grande de Argentina!"/>
-        <ItemCount stock={5} initial={0} onAdd={onAdd}/>
+
+          <NavBar/>         
+          <ItemListContainer opening="¡Bienvenidos al Drum Shop más grande de Argentina!"/>         
+          <ItemCount stock={5} initial={0} onAdd={onAdd}/>
       </div>
+    </React.Fragment>         
+      
   );
 }
 

@@ -1,3 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+h1{
+    text-align: center;
+}
 .NavBarItems {
     background: linear-gradient(90deg, rgb(68, 68, 68) 0%, rgba(73,63,252,1) 100%) ;
     height: 80px;
@@ -68,23 +76,34 @@
     text-align: center;
 }
 .productos {
-    /*display: flex;      
+    display: flex;      
     flex-direction: row;              
     justify-content: center;
     align-items: center; 
-    border: 1px solid black;
-    margin: 10px;
+    /*border: 1px solid black;    
+    margin: 5px;
     background-color: rgb(105, 104, 107);
     color: #fff;*/
+    
+}
+.btn{
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
-    margin: 10px;
-    align-items:center;
-    padding: 5px;
+    justify-content: space-between;
+    ;
 }
+@media screen and (max-width: 1220px){
+    .productos {
+        display: flex;
+        /*flex-direction: column;*/
+        flex-flow: row wrap;           
+        margin: auto;
+        width: 50%;
+        
+                
+    }
 
-
+}
 @media screen and (max-width: 960px){
     .NavBarItems {
         position: relative; 
@@ -147,12 +166,5 @@
         color: #fff;
         font-size: 2rem ;        
     }
-    .productos {
-        display: flex;
-        flex-direction: column;        
-        margin: auto;
-        width: 50%;
-        height: auto;
-        position: relative;        
-    }
+    
 }

@@ -5,7 +5,7 @@ import logo from "../img/DS.png";
 import { Carrito } from "./CartWidget";
 
 
-export const NavBar=() => {
+export default function NavBar() {
     const [clicked, setClicked] = useState(false)
 
     const handleClick = () => { 
@@ -47,4 +47,3 @@ export const NavBar=() => {
     
 }
 
-export default NavBar;

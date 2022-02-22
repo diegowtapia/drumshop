@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "id": 0,
         "name": "Snare",
         "stock": 3,
         "price": 7500,   
@@ -9,7 +9,7 @@
         "category": "snare"        
     },
     {
-        "id": 2,
+        "id": 1,
         "name": "Crash",
         "stock": 12,
         "price": 5600,        
@@ -18,16 +18,16 @@
         "description": "CRASH"
     },
     {
-        "id": 3,
+        "id": 2,
         "name": "Palillos",
         "stock": 7,
         "price": 700,        
-        "img": "https://d3ugyf2ht6aenh.cloudfront.net/stores/001/661/931/products/1311-ac618a98ae417fee3216215429148178-1024-1024.jpg'",
+        "img": "https://http2.mlstatic.com/D_NQ_NP_967841-MLA48266595151_112021-O.webp",
         "category": "Palillos",    
         "description": "PALILLOS"           
     },
     {
-        "id": 4,
+        "id": 3,
         "name": "Pedal",
         "stock": 6,
         "price": 2700,        

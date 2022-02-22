@@ -1,0 +1,27 @@
+.ItemContainerDetail{
+    width: 50%;
+    background-color: #489696;
+    margin: 15px auto;
+    border-radius: 80px 20px;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+}
+.ItemContainerDetail img{
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+    cursor: pointer;
+}
+.ItemContainerDetail h1{
+    font-weight: 900;
+    margin: 25px;
+    font-size: 3.5vw;
+}
+.ItemContainerDetail p{
+    font-weight: 600;
+    margin: 15px auto;
+    font-size: 1.5vw;
+    width: 70%;
+}
+.ItemContainerDetail .ItemPriceDetail{
+    font-size: 2.5vw;
+}

@@ -1,10 +1,24 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import menuItems from "./menuItems.json"
 import "./NavBar.css";
 import logo from "../img/DS.png";
 import { Carrito } from "./CartWidget";
+import { Link } from "react-router-dom"
 
 
+export const NavBar = () => {
+    return(
+        <div>
+            <img className="navBar-logo" src={logo} alt="logo"></img>
+            <Link style={{marginLeft:10}} to="/">Home</Link>
+            <Link style={{marginLeft:10}} to="/category/accesorios">Accesorios</Link>
+            <Link style={{marginLeft:10}} to="/category/drums">Drums</Link>
+            <Carrito style={{marginLeft:15}}/>
+        </div>
+    )
+}
+
+/*
 export default function NavBar() {
     const [clicked, setClicked] = useState(false)
 
@@ -46,4 +60,4 @@ export default function NavBar() {
         )
     
 }
-
+*/

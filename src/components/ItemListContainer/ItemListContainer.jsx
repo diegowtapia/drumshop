@@ -1,8 +1,30 @@
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import baseDeDatos from '../Productos/productos.json'
-import Item from '../Item/Item';
+import { Link } from 'react-router-dom';
+import { ItemList } from '../ItemList/ItemList';
 
+export const ItemListContainer = () => {
+    
+    const [productos, setProductos] = useState([])
 
+    useEffect(()=>{
+        setProductos(baseDeDatos);
+    },[]) 
+
+    return (
+        <div>
+            {
+                productos.map (producto=>{
+                    return(
+                        <ItemList key={producto.id} productoProp={producto}/>
+                    )
+                })
+            }
+        </div>
+    )
+} 
+
+/*
 //export default function ItemListContainer(){
 const ItemListContainer = ({opening}) => { 
     const [productos, setProductos] = useState([])
@@ -37,3 +59,4 @@ const ItemListContainer = ({opening}) => {
 }
 export default ItemListContainer;
 
+*/

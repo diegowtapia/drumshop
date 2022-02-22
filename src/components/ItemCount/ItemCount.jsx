@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import { Button, Card } from 'react-bootstrap';
 
 const Counter = ({ stock, initial, onAdd }) => {
@@ -16,9 +16,9 @@ const Counter = ({ stock, initial, onAdd }) => {
             
                 
                 <br/>
-                <Card style={{ width: '10rem', borderColor: 'grey' }}>                
+                <Card style={{ width: '10rem', borderColor: 'grey', height: '200px' }}>                
                 <Card.Body>
-                    <Card.Title style={{ textAlign: 'center' }}>{number}</Card.Title>
+                    <Card.Title style={{ textAlign: 'center', color: 'black' }}>{number}</Card.Title>
                         <div className="btn">
                             <Button onClick={add} variant="outline-success">+</Button>
                             <Button onClick={substract} variant="outline-danger">-</Button>

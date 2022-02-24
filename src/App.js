@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import './App.css';
 import ItemCount from "../src/components/ItemCount/ItemCount";
 import  { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer';
-import  Item  from './components/ItemList/ItemList';
+import  Item, { ItemList }  from './components/ItemList/ItemList';
 //import Rutas from '../src/components/routes/index';
 import  { ItemListContainer } from "./components/ItemListContainer/ItemListContainer";
 import { NavBar } from '../src/components/NavBar/NavBar';
@@ -26,7 +26,8 @@ function App() {
 
         <Route path='/' element={<ItemListContainer/>}/>                                
         <Route path="/items/:id" element={<ItemDetailContainer/>}/>            
-        <Route path="/category/:id" element={<ItemListContainer/>}/> 
+        <Route path="/category/drums/:id" element={<ItemDetailContainer />}/> 
+        <Route path="/category/accesorios/:id" element={<ItemDetailContainer />}/> 
         
       </Routes> 
       <footer>

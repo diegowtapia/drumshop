@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import  baseDeDatos  from "../Productos/productos.json"
+import ItemCount from "../ItemCount/ItemCount";
+import { Link } from "react-router-dom";
 
-
+const onAdd = (number) => {
+    alert(`Se agregaron al carrito ${number} items`);
+  };
 
 export const ItemDetailContainer = () => {
     const [producto, setProducto] = useState()
@@ -34,9 +38,14 @@ export const ItemDetailContainer = () => {
 
                 <img src={baseDeDatos[id].img} alt="img"></img>,
                 <h2>Producto {baseDeDatos[id].name}</h2>,
-                <p>Descripción: {baseDeDatos[id].description}</p>,
-                <h1> PRECIO:$ {baseDeDatos[id].price}</h1>
-            
+                <h3>Descripción: {baseDeDatos[id].description}</h3>,
+                <h3>STOCK: {baseDeDatos[id].stock}</h3>,
+                <h1> PRECIO:$ {baseDeDatos[id].price}</h1>,                
+                <ItemCount  stock={baseDeDatos[id].stock} initial={0} onAdd={onAdd}/>
+                <br/>
+                <Link to={`/cart`}>
+                    <button>Terminar mi compra</button>      
+                </Link>
         </div>    
     )    
 }

@@ -4,20 +4,19 @@ import { Link } from "react-router-dom";
 
 export const ItemList = ({productoProp}) => { 
   console.log("productoProp", productoProp)
-  const onAdd = (number) => {
+  {/*const onAdd = (number) => {
     alert(`Se agregaron al carrito ${number} items`);
-  };
+  };*/}
   return(
     <div style={{background: "blue", color: "white", margin: 10, width: 200 ,heigh:500}}>
       
       <img src={productoProp.img} alt="img-producto" style={{width:"250px", height:"300px"}}/>
       <h2>{productoProp.name}</h2>
-      <h3>Precio: {productoProp.price}</h3>
-      <h4>Stock: {productoProp.stock}</h4>
+      <h3>Precio: {productoProp.price}</h3>      
       <Link to={`/items/${productoProp.id}`}>
-        <button>Detalle</button>
+        <button>Ver Más</button>
       </Link>
-      <ItemCount  stock={productoProp.stock} initial={0} onAdd={onAdd}/>
+      {/*<ItemCount  stock={productoProp.stock} initial={0} onAdd={onAdd}/>*/}
     </div>
   )
 }

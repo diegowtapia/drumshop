@@ -7,7 +7,8 @@ import  Item, { ItemList }  from './components/ItemList/ItemList';
 //import Rutas from '../src/components/routes/index';
 import  { ItemListContainer } from "./components/ItemListContainer/ItemListContainer";
 import { NavBar } from '../src/components/NavBar/NavBar';
-
+import { Cart } from "../src/components/Cart/Cart";
+ 
 
 function App() {
   {/*const onAdd = (number) => {
@@ -28,6 +29,8 @@ function App() {
         <Route path="/items/:id" element={<ItemDetailContainer/>}/>            
         <Route path="/category/drums/:id" element={<ItemDetailContainer />}/> 
         <Route path="/category/accesorios/:id" element={<ItemDetailContainer />}/> 
+
+        <Route exact path="/cart" element={<Cart />}/> 
         
       </Routes> 
       <footer>

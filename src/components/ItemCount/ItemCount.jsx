@@ -2,7 +2,7 @@ import {useState} from "react";
 import { Button, Card } from 'react-bootstrap';
 
 const Counter = ({ stock, initial, onAdd }) => {
-    const [number, setNumber] = useState(0);
+    const [number, setNumber] = useState(1);
 
     const add = () => {
         number < stock && setNumber(number + 1);

@@ -6,8 +6,10 @@ import  { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetai
 import  Item, { ItemList }  from './components/ItemList/ItemList';
 //import Rutas from '../src/components/routes/index';
 import  { ItemListContainer } from "./components/ItemListContainer/ItemListContainer";
+import { Home } from "../src/components/Home/Home";
 import { NavBar } from '../src/components/NavBar/NavBar';
 import { Cart } from "../src/components/Cart/Cart";
+import { Footer } from "../src/components/Footer/Footer";
  
 
 function App() {
@@ -18,24 +20,21 @@ function App() {
     <div className='App'>
     
     <BrowserRouter>
+      
       <NavBar/> 
-      {/*<ItemListContainer opening="¡Bienvenidos al Drum Shop más grande de Argentina!"/> 
-      <ItemCount stock={5} initial={0} onAdd={onAdd}/>*/}
-
-
-      <Routes>  
-
-        <Route path='/' element={<ItemListContainer/>}/>                                
-        <Route path="/items/:id" element={<ItemDetailContainer/>}/>            
-        <Route path="/category/drums/:id" element={<ItemDetailContainer />}/> 
-        <Route path="/category/accesorios/:id" element={<ItemDetailContainer />}/> 
-
-        <Route exact path="/cart" element={<Cart />}/> 
         
-      </Routes> 
-      <footer>
-        Sitio desarrollado por DWT.
-      </footer>    
+        <Routes>  
+
+            <Route path='/' element={<Home />}/>                                
+            <Route path="/items/:id" element={<ItemDetailContainer/>}/>            
+            <Route path="/category/drums/:id" element={<ItemDetailContainer />}/> 
+            <Route path="/category/accesorios/:id" element={<ItemDetailContainer />}/> 
+
+            <Route exact path="/cart" element={<Cart />}/> 
+          
+        </Routes>
+
+      <Footer />   
     </BrowserRouter>
     </div>
      

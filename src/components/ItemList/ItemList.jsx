@@ -8,18 +8,42 @@ export const ItemList = ({productoProp}) => {
     alert(`Se agregaron al carrito ${number} items`);
   };*/}
   return(
-    <div style={{background: "blue", color: "white", margin: 10, width: 200 ,heigh:500}}>
-      
-      <img src={productoProp.img} alt="img-producto" style={{width:"250px", height:"300px"}}/>
-      <h2>{productoProp.name}</h2>
-      <h3>Precio: {productoProp.price}</h3>      
-      <Link to={`/items/${productoProp.id}`}>
-        <button>Ver Más</button>
+    <Card style={{ width: "15rem" }} className="my-3 item__cart">
+      <Link to={`/items/${productoProp.id}`} title={productoProp.name}>
+        <Card.Img
+            variant="top"
+            src={productoProp.img}
+            style={{ height: "9rem", objectFit: "contain" }}
+        />
       </Link>
-      {/*<ItemCount  stock={productoProp.stock} initial={0} onAdd={onAdd}/>*/}
+      <Card.Body className="d-flex flex-column justify-content-between align-items-center">
+        <Link
+          to={`/items/${productoProp.id}`}
+          style={{ color: "#212529", textDecoration: "none" }}
+        >        
+          <Card.Title className="text-center">{productoProp.name}</Card.Title>
+        </Link>
+        <Card.Text className="text-center">
+          ${new Intl.NumberFormat().format(productoProp.price)}
+        </Card.Text>
+        <div className="d-flex">
+          <Link to={`/items/${productoProp.id}`} className="btn btn-outline-primary me-2">
+            Ver más
+          </Link>
+        </div>
+      </Card.Body>    
+    </Card>
+  );
+}
+      
+      {/*<img src={productoProp.img} alt="img-producto" style={{width:"250px", height:"300px"}}/>
+      <h2>{productoProp.name}</h2>
+  <h3>Precio: {productoProp.price}</h3>     
+      
+      {/*<ItemCount  stock={productoProp.stock} initial={0} onAdd={onAdd}/>
     </div>
   )
-}
+}*/}
 
 
 

@@ -2,24 +2,50 @@ import { useState } from "react";
 import menuItems from "./menuItems.json"
 import "./NavBar.css";
 import logo from "../img/DS.png";
+import { faHeart, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Carrito } from "./CartWidget";
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 
 
 export const NavBar = () => {
     return(
-        <div>
-            <img className="navBar-logo" src={logo} alt="logo"></img>
-            <Link style={{marginLeft:10}} to="/">Home</Link>
-            <Link style={{marginLeft:10}} to="/category/accesorios/2">Accesorios</Link>
-            <Link style={{marginLeft:10}} to={`/category/drums/0`}>Drums</Link>            
-            <Carrito style={{marginLeft:15}}/>
-        </div>
+        <header className="NavBarItems">
+            <section className="container d-flex justify-content-between align-items-center pt-3">
+                
+                    <Link to="/">
+                        <img className="navBar-logo" src={logo} alt="logo" ></img>
+                    </Link>
+                    <div >
+                        <Link to="/" className="nav-links">Home</Link>
+                        <Link to="/category/accesorios/2"  className="nav-links">Accesorios</Link>
+                        <Link to={`/category/drums/0`}  className="nav-links">Drums</Link>        
+            
+                    </div>
+                    <div className="d-flex">   
+
+                        <NavLink
+                            activeStyle={{ color: "rgb(100,100,100)" }}
+                            style={{color: "white"}}
+                            to="/cart"
+                            className="ms-2 position-relative"
+                            title="Carrito"
+                        >
+                        <FontAwesomeIcon icon={faShoppingCart} />
+                    
+                        </NavLink>            
+                
+                    </div>
+            </section>
+        </header>
     )
 }
 
+
+
 /*
+<Carrito style={{marginLeft:15}}/>
 export default function NavBar() {
     const [clicked, setClicked] = useState(false)
 

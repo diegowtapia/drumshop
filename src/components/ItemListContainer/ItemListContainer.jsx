@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import baseDeDatos from '../Productos/productos.json'
 import { Link } from 'react-router-dom';
 import { ItemList } from '../ItemList/ItemList';
+import { Row, Col, Spinner } from 'react-bootstrap';
 
 export const ItemListContainer = () => {
     
@@ -12,15 +13,33 @@ export const ItemListContainer = () => {
     },[]) 
 
     return (
-        <div>
-            {
-                productos.map (producto=>{
-                    return(
-                        <ItemList key={producto.id} productoProp={producto}/>
-                    )
-                })
-            }
-        </div>
+        <>
+            <section>
+                <Row>
+                {                
+                    productos.map (producto=>{                    
+                        return(
+                            <Col
+                                key={producto.id}
+                                xs={6}
+                                md={3}
+                                className="d-flex justify-content-center"
+                            >
+                                <ItemList 
+                                    key={producto.id}
+                                    id={producto.id}            
+                                    productoProp={producto}
+                                    precio={producto.precio}
+                                    //img={producto.img}
+                                />
+                            </Col>
+                        )
+                        
+                    })}
+                
+                </Row>
+            </section>
+        </>
     )
 } 
 

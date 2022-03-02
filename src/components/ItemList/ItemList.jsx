@@ -1,6 +1,7 @@
 import { Card, Button } from "react-bootstrap";
 import ItemCount from "../ItemCount/ItemCount";
 import { Link } from "react-router-dom";
+import "../Cart/Cart.css";
 
 export const ItemList = ({productoProp}) => { 
   console.log("productoProp", productoProp)

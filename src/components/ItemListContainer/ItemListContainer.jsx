@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import baseDeDatos from '../Productos/productos.json'
 import { Link } from 'react-router-dom';
 import { ItemList } from '../ItemList/ItemList';
-import { Row, Col, Spinner } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 export const ItemListContainer = () => {
     
@@ -30,7 +30,7 @@ export const ItemListContainer = () => {
                                     id={producto.id}            
                                     productoProp={producto}
                                     precio={producto.precio}
-                                    //img={producto.img}
+                                    img={producto.img}
                                 />
                             </Col>
                         )

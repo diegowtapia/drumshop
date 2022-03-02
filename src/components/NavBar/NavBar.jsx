@@ -9,7 +9,7 @@ import { Link, NavLink } from "react-router-dom"
 
 
 
-export const NavBar = () => {
+function NavBar() {
     return(
         <header className="NavBarItems">
             <section className="container d-flex justify-content-between align-items-center pt-3">
@@ -26,7 +26,7 @@ export const NavBar = () => {
                     <div className="d-flex">   
 
                         <NavLink
-                            activeStyle={{ color: "rgb(100,100,100)" }}
+                            activestyle={{ color: "rgb(100,100,100)" }}
                             style={{color: "white"}}
                             to="/cart"
                             className="ms-2 position-relative"
@@ -42,6 +42,7 @@ export const NavBar = () => {
     )
 }
 
+export default NavBar;
 
 
 /*

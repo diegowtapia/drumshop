@@ -1,21 +1,25 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Card, Col, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Card, Col, Row, Spinner, Breadcrumb } from "react-bootstrap";
+import { useParams } from "react-router";
 import  baseDeDatos  from "../Productos/productos.json"
 import ItemCount from "../ItemCount/ItemCount";
 import { Link } from "react-router-dom";
+import { ItemDetail } from "./ItemDetail";
 
-const onAdd = (number) => {
-    alert(`Se agregaron al carrito ${number} items`);
-  };
+
 
 export const ItemDetailContainer = () => {
-    const [producto, setProducto] = useState()
-    const {id} = useParams();
+    
+    const [producto, setProducto] = useState([""]);
+     
+    const {id} = useParams();   
+
+
     const obtenerProductoBD = (nombreProducto) => {
+        
         return new Promise((resolve, reject)=> {
-            const arregloProductosBD = baseDeDatos;            
+            const arregloProductosBD = baseDeDatos;           
             const productoEncontrado = arregloProductosBD.find((elemento)=>elemento.id === nombreProducto);   
             setTimeout(() => { 
                 resolve(productoEncontrado)
@@ -31,12 +35,33 @@ export const ItemDetailContainer = () => {
         obtenerProducto(id);   
         
     },[id])
+  
 
     console.log("parametro recibido", id)
-    console.log("producto", producto)
+    console.log("producto", baseDeDatos[id])
     
     return(
-        <Card style={{ width: "90%", margin: "auto" }}>
+        <>
+            {baseDeDatos[id] && id ? (
+                <section className="container mt-3">
+                    <Breadcrumb>
+                        <Link className="breadcrumb-item" to="/" style={{ color: "black" }}>
+                            Home
+                        </Link>                    
+                    </Breadcrumb>
+                    <ItemDetail productos={baseDeDatos[id]} idProducto={id} />
+                        
+                </section>
+            ) : (
+                <section className="d-flex justify-content-center mt-3">
+                    <Spinner animation="border" variant="warning" />
+                </section>
+            )}
+        </>
+    );
+}
+
+        /*<Card style={{ width: "90%", margin: "auto" }}>
             <Row>
                 <Col xs={12} md={8}>
                     <Card.Img
@@ -73,7 +98,7 @@ export const ItemDetailContainer = () => {
     );
 }
 
-{ /* 
+{  
                 <img src={baseDeDatos[id].img} alt="img"></img>,
                 <h2>Producto {baseDeDatos[id].name}</h2>,
                 <h3>Descripción: {baseDeDatos[id].description}</h3>,
@@ -87,9 +112,9 @@ export const ItemDetailContainer = () => {
         </div>    
     )    
 }
-*/}
 
-/*
+
+
 export default function ItemDetail(){
     
     const {id} = useParams();    

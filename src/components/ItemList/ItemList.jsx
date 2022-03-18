@@ -1,34 +1,53 @@
+import React,{useContext, useEffect, useState} from "react";
 import { Card, Button } from "react-bootstrap";
+import Items from "./Item";
 import ItemCount from "../ItemCount/ItemCount";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 import "../Cart/Cart.css";
 
-export const ItemList = ({productoProp}) => { 
-  console.log("productoProp", productoProp)
-  {/*const onAdd = (number) => {
+
+import { Item } from '../ItemList/Item';
+
+export const ItemList = ({productos}) => {
+
+
+  return (
+      <>
+         
+          {productos.map((producto) => (<Item {...producto} key={producto.id}/>) )}
+         
+        </>
+  
+  )
+}
+
+{/*
+  console.log("producto", producto)
+  const onAdd = (number) => {
     alert(`Se agregaron al carrito ${number} items`);
-  };*/}
+  };
   return(
     <Card style={{ width: "15rem" }} className="my-3 item__cart">
-      <Link to={`/items/${productoProp.id}`} title={productoProp.name}>
+      <Link to={`/items/${id}`} title={producto}>
         <Card.Img
             variant="top"
-            src={productoProp.img}
+            src={img}
             style={{ height: "9rem", objectFit: "contain" }}
         />
       </Link>
       <Card.Body className="d-flex flex-column justify-content-between align-items-center">
         <Link
-          to={`/items/${productoProp.id}`}
+          to={`/items/${id}`}
           style={{ color: "#212529", textDecoration: "none" }}
         >        
-          <Card.Title className="text-center">{productoProp.name}</Card.Title>
+          <Card.Title className="text-center">{producto}</Card.Title>
         </Link>
         <Card.Text className="text-center">
-          ${new Intl.NumberFormat().format(productoProp.price)}
+          ${new Intl.NumberFormat().format(price)}
         </Card.Text>
         <div className="d-flex">
-          <Link to={`/items/${productoProp.id}`} className="btn btn-outline-primary me-2">
+          <Link to={`/items/${id}`} className="btn btn-outline-primary me-2">
             Ver más
           </Link>
         </div>
@@ -37,9 +56,9 @@ export const ItemList = ({productoProp}) => {
   );
 }
       
-      {/*<img src={productoProp.img} alt="img-producto" style={{width:"250px", height:"300px"}}/>
+      <img src={productoProp.img} alt="img-producto" style={{width:"250px", height:"300px"}}/>
       <h2>{productoProp.name}</h2>
-  <h3>Precio: {productoProp.price}</h3>     
+  <h3>Precio: {productoProp.price}</h3>  */}   
       
       {/*<ItemCount  stock={productoProp.stock} initial={0} onAdd={onAdd}/>
     </div>
@@ -72,5 +91,5 @@ export default function Item({ productos }) {
       </div>
     );
 };
-*/
-//export default Item;
+
+//export default Item;*/

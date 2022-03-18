@@ -1,13 +1,138 @@
-import {useState, useEffect} from 'react';
-import baseDeDatos from '../Productos/productos.json'
-import { Link } from 'react-router-dom';
-import { ItemList } from '../ItemList/ItemList';
-import { Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState, useContext } from "react";
+
+import  { useFirebaseContext }  from '../../context/FirebaseContext';
+
+import { ItemList } from "../ItemList/ItemList";
+
+import { useParams } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from '../../services/getFirebase';
+
 
 export const ItemListContainer = () => {
+    const[items, setItems] = useState([]);
+    const[isLoading, setIsLoading] = useState(true);
     
-    const [productos, setProductos] = useState([])
+  let {category} = useParams();
+     
+    const getData = async () => {
+      try {
+        const itemsCollection = collection(db, "items")
+        const col = await getDocs(itemsCollection)
+        const result = col.docs.map((doc)=> doc = {id:doc.id, ...doc.data()})
+        setItems(result)
+        setIsLoading(false)
+      } catch(error) {
+        console.log('Error', error);
+      }
+  }
+  
+  const getDataCategory = async () => {
+    try {
+      const itemsCollection = collection(db, "items")
+      const col = await getDocs(itemsCollection)
+      const result = col.docs.map((doc) => doc = { id: doc.id, ...doc.data() })
+      setItems(result.filter(e => e.category === category))
+      setIsLoading(false)
+    } catch (error) {
+      console.log('Error', error)
+    }
+  }
 
+  useEffect(() => {
+    category?getDataCategory():getData()
+
+  },[category])
+  
+  console.log('items', items)
+
+    return (
+      <>
+        {isLoading ? (
+          <h1 className="text-center mt-2">Cargando....</h1>
+        ) : (
+          <>
+           
+            <div className="container mt-5 bg-light pt-5 pb-5 shadow-sm">
+              <div className="row">
+                <ItemList productos={items} />
+              </div>
+            </div>
+          </>
+        )}
+      </>
+    );
+  
+};
+
+
+
+{/* 
+export const ItemListContainer = () => {
+
+    
+    const { idCategoria } = useParams();
+    const [items, setItems] = useState([]);
+    const [load, setLoad] = useState(true);
+    
+    //const [productos, setProductos] = useState([])
+
+    const getData = async() => {
+        try{
+            const itemsCollection = collection(db, "items")
+            const col = await getDocs(itemsCollection)
+            const result = col.docs.map((doc) => doc = { id: doc.id, ...doc.data() })
+            setItems(result)
+            setLoad(false)
+        } catch (error) {
+            console.warn("error",error)
+        }
+    }
+
+    useEffect(() => {
+      getData()
+
+    
+    }, [idCategoria])   
+
+
+    
+    console.log("itemssss" , items)
+    return (
+        <>
+          {items && items.length > 0 ? (
+            <section className="container">
+              <Row>
+                
+                  <Col
+                    key={items.idCategoria}
+                    xs={6}
+                    md={3}
+                    className="d-flex justify-content-center"
+                  >
+                    <ItemList
+                      img={items.img}
+                    />
+                  </Col>
+                
+              </Row>
+            </section>
+            ) : (
+                <section className="d-flex justify-content-center mt-3">
+                    <Spinner animation="border" variant="warning" />
+                </section>
+            )}
+        </>
+    )
+
+*/}
+/*
+    //setea el id del state de firebase
+    useEffect(() => {
+        setIdParam(null);
+    }, [setIdParam, idCategoria]);
+
+    
     useEffect(()=>{
         setProductos(baseDeDatos);
     },[]) 
@@ -42,7 +167,7 @@ export const ItemListContainer = () => {
         </>
     )
 } 
-
+*/
 /*
 //export default function ItemListContainer(){
 const ItemListContainer = ({opening}) => { 
@@ -77,5 +202,4 @@ const ItemListContainer = ({opening}) => {
         )
 }
 export default ItemListContainer;
-
 */

@@ -1,16 +1,91 @@
-import React from "react";
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from "../../services/getFirebase";
+import { useParams } from "react-router-dom";
+import { ItemDetail } from '../ItemDetailContainer/ItemDetail';
 import { useEffect, useState } from "react";
-import { Card, Col, Row, Spinner, Breadcrumb } from "react-bootstrap";
-import { useParams } from "react-router";
-import  baseDeDatos  from "../Productos/productos.json"
-import ItemCount from "../ItemCount/ItemCount";
-import { Link } from "react-router-dom";
-import { ItemDetail } from "./ItemDetail";
-
-
 
 export const ItemDetailContainer = () => {
+  
+  const [selectedItem, setSelectedItem] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+     
+  const { id } = useParams();
+
+  const getSelected = async () => {
+      try {
+        const document = doc(db, "items", id);
+        const response = await getDoc(document);
+        const result =  { id: response.id, ...response.data() }
+        setSelectedItem(result);
+        setIsLoading(false);
+      } catch (error) {
+        console.log("Error", error);
+      }
+  }
+
+  useEffect(() => {
+    getSelected()
+
+  }, [id])
+  
     
+  return (
+    <>
+      {isLoading ? (
+        <h1 className="text-center mt-2">Cargando....</h1>
+      ) : (
+        <>
+          <div className="container mt-5">
+              <div className="row justify-content-center mt-5">
+                  <ItemDetail productos={selectedItem} />
+              
+              </div>
+      
+              </div>
+          
+        </>
+      )}
+    </>
+  );
+};
+
+
+
+
+
+    //const { productos, setIdParam } = useFirebaseContext();
+    //const { idProducto } = useParams();
+
+    // setea el state de id del producto
+    /*useEffect(() => {
+        idProducto ? setIdParam(idProducto) : setIdParam(null);
+    }, [idProducto, setIdParam]);*/
+/*
+    return (
+        <>
+          {productos && idProducto ? (
+            <section className="container mt-3">
+              <Breadcrumb>
+                <Link className="breadcrumb-item" to="/" style={{ color: "black" }}>
+                  Home
+                </Link>
+                
+                <Breadcrumb.Item active>{productos.producto}</Breadcrumb.Item>
+              </Breadcrumb>
+    
+              <ItemDetail productos={productos} idProducto={idProducto} />
+            </section>
+          ) : (
+            <section className="d-flex justify-content-center mt-3">
+              <Spinner animation="border" variant="warning" />
+            </section>
+          )}
+        </>
+      );
+    }
+*/
+
+  /*  
     const [producto, setProducto] = useState([""]);
      
     const {id} = useParams();   
@@ -36,9 +111,12 @@ export const ItemDetailContainer = () => {
         
     },[id])
   
-
+    
     console.log("parametro recibido", id)
     console.log("producto", baseDeDatos[id])
+
+    
+
     
     return(
         <>

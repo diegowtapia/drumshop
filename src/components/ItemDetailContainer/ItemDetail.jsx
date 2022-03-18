@@ -1,8 +1,77 @@
-import React, { useState } from "react";
+import { ItemCount } from "../ItemCount/ItemCount";
+import { ShowCounter } from "../ItemCount/ShowCounter";
+import { useCartContext } from "../../context/CartContext";
+import { useState } from "react";
+
+export const ItemDetail = ({productos}) => {
+  const [count, setCount] = useState(0);
+  const { addItem, show, handleShow } = useCartContext();
+
+  const handleAdd = () => {
+     setCount(count + 1);
+   }
+
+  const handleSub = () => {
+     setCount(count - 1);
+  }
+  
+ return (
+    <>
+      <hr />
+      <div className="card mb-3 mw-card">
+        <div className="row g-0">
+          <div className="col-md-6">
+            <img
+              src={productos.img}
+              className="img-fluid rounded-start"
+              alt={productos.name}
+            />
+          </div>
+          <div className="col-md-6">
+            <div className="card-body">
+              
+              <h2 className="card-title text-uppercase">{productos.name}</h2>
+              <p className="card-text">{productos.description}</p>
+
+              <h3>$ {productos.price}</h3>
+              <hr />
+              <h5 className="mt-5">Stock Disponible: {productos.stock}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div className=" d-flex mt-2 mb-5 justify-content-center">
+            <ItemCount
+                    count={count}
+                     sub={handleSub}
+                     add={handleAdd}
+                     show={handleShow}
+                     condition={show}
+                     stock={productos.stock}
+           />
+                 
+    </div>  
+                  
+            <button className="btn btn-primary w-25 mb-5"
+                    type="button"  onClick={()=> addItem(productos, count)}
+                    disabled={show || count === 0}
+                  >Agregar Producto
+            </button>
+            {show && <ShowCounter show={handleShow} count={count} />}
+      
+    </>
+  );
+};
+
+
+
+{/*import React, { useState } from "react";
 import Button from "@restart/ui/esm/Button";
 import { Card, Col, Row } from "react-bootstrap";
-import { useCartContext }   from "../../context/CartContext";
-import baseDeDatos from "../Productos/productos.json"
+import { UseCartContext }   from "../../context/CartContext";
+import baseDeDatos from "../Productos/productos.json";
+import { useFirebaseContext } from "../../context/FirebaseContext";
 import { Counter } from "../ItemCount/Counter";
 import  BtnItemDetail  from "../ItemDetailContainer/BtnItemDetail";
 
@@ -12,8 +81,8 @@ export const ItemDetail = ({ productos, idProducto }) => {
     const [cant, setCant] = useState(1);
     const [btn, setBtn] = useState(false);
     let { id, name, price, category, description, img, stock } = productos && idProducto ? productos : "";
-    const { carrito, addToCart } = useCartContext();    
-    //const { stockItem, setStockItem } = useState(null);
+    const { carrito, addToCart } = UseCartContext();    
+    //const [ stockItem, setStockItem ] = useFirebaseContext();
 
    
     /*
@@ -23,8 +92,8 @@ export const ItemDetail = ({ productos, idProducto }) => {
     if (repetido) {
         setStockItem(stock - repetido.cant);
     }
-    */
-
+    
+    
 
     // resta 1 a cant
     function subtractCant() {
@@ -83,6 +152,7 @@ export const ItemDetail = ({ productos, idProducto }) => {
                                     cant={cant}
                                     addCant={addCant}
                                     subtractCant={subtractCant}
+                                    //stockItem={stockItem}
                                     stockItem={baseDeDatos[id].stock}
                                 />
 
@@ -98,7 +168,8 @@ export const ItemDetail = ({ productos, idProducto }) => {
                                 
                             </>
                         )}
-
+                        
+                        (btn || stockItem === 0 ) && <BtnItemDetail />
                         {(btn || baseDeDatos[id].stock === 0 ) && <BtnItemDetail />}
                     </Card.Body>
                 </Col>
@@ -106,4 +177,4 @@ export const ItemDetail = ({ productos, idProducto }) => {
         </Card>
     );
 
-}
+}*/}

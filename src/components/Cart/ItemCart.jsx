@@ -1,12 +1,12 @@
 import React from "react";
 import { Card, Col, Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useCartContext }   from "../../context/CartContext";
+import { UseCartContext }   from "../../context/CartContext";
 import baseDeDatos from "../Productos/productos.json";
 
 
 function ItemCart({ id, img, name, description, price, cant } ) {
-    const { borrarProducto } = useCartContext();
+    const { borrarProducto } = UseCartContext();
     //const datos = baseDeDatos;
     return (
         <Card style={{ maxWidth: "600px" }} className="item__cart mt-3">

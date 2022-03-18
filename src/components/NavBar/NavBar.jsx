@@ -5,34 +5,43 @@ import logo from "../img/DS.png";
 import { faHeart, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Carrito } from "./CartWidget";
-import { Link, NavLink } from "react-router-dom"
-
-
+import { Link, NavLink } from "react-router-dom";
+import { useCartContext } from "../../context/CartContext";
+import { useFirebaseContext } from "../../context/FirebaseContext";
+/*import  baseDeDatos  from "../Productos/productos.json";
+const data = baseDeDatos;*/
 
 function NavBar() {
+    //const  productosEnCarrito  = useCartContext();    
+
     return(
-        <header className="NavBarItems">
+        <header>
             <section className="container d-flex justify-content-between align-items-center pt-3">
                 
                     <Link to="/">
-                        <img className="navBar-logo" src={logo} alt="logo" ></img>
+                        <img  style={{height: 70}} src={logo} alt="logo" ></img>
                     </Link>
-                    <div >
-                        <Link to="/" className="nav-links">Home</Link>
-                        <Link to="/category/accesorios/2"  className="nav-links">Accesorios</Link>
-                        <Link to={`/category/drums/0`}  className="nav-links">Drums</Link>        
-            
-                    </div>
+                    <section className="container py-2">
+                        <ul className="d-flex justify-content-center">
+                            <li>
+                                <Link to="/" className="me-2">Home</Link>
+                                <Link to= {`/category/accesorios`}  className="me-2">Accesorios</Link>
+                                <Link to={`/category/drums`}  className="me-2">Drums</Link>        
+                            </li>
+                        </ul>
+                    </section>
                     <div className="d-flex">   
 
                         <NavLink
-                            activestyle={{ color: "rgb(100,100,100)" }}
-                            style={{color: "white"}}
+                            activestyle={{ color: "rgb(100, 100, 100)" }}                           
                             to="/cart"
                             className="ms-2 position-relative"
                             title="Carrito"
                         >
-                        <FontAwesomeIcon icon={faShoppingCart} />
+                            <FontAwesomeIcon icon={faShoppingCart} />
+                            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                               {/* {productosEnCarrito()} */}
+                            </span>
                     
                         </NavLink>            
                 

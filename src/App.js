@@ -6,37 +6,62 @@ import  { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetai
 import  Item, { ItemList }  from './components/ItemList/ItemList';
 //import Rutas from '../src/components/routes/index';
 import  { ItemListContainer } from "./components/ItemListContainer/ItemListContainer";
-import  Home   from "../src/components/Home/Home";
+
 import  NavBar   from '../src/components/NavBar/NavBar';
-import  Cart    from "../src/components/Cart/Cart";
-import  CartContext   from "../src/context/CartContext";
+import { Cart } from './components/Cart/Cart';
+import { UseCartContext }    from "../src/context/CartContext";
 import  { Footer }  from "../src/components/Footer/Footer";
- 
+import  FirebaseContext  from './context/FirebaseContext';
+import { CartContainer } from './context/FirebaseContext'; 
+import Pages from "../src/components/pages/Pages";
+import { Inicio } from '../src/components/pages/Inicio';
+import { CartProvider } from "../src/context/CartContext";
 
 function App() {
   
   return (  
-    
-    <CartContext>
-      <BrowserRouter>      
-        <NavBar/> 
-          
-          <Routes>  
-
-              <Route exact path='/' element={<Home/>}/>                                
-              <Route exact path="/items/:id" element={<ItemDetailContainer/>}/>            
-              <Route exact path="/category/drums/:id" element={<ItemDetailContainer/>}/> 
-              <Route exact path="/category/accesorios/:id" element={<ItemDetailContainer/>}/>
-              <Route exact path="/cart" element={<Cart/>}/> 
-            
+    <>
+      <CartProvider>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Inicio />} />
+            <Route path="/category/:category" element={<ItemListContainer />} />
+            <Route path="/items/:id" element={<ItemDetailContainer />} />
+            <Route path="/cart" element={<Cart />} />            
           </Routes>
-
-        <Footer />   
-      </BrowserRouter>
-    </CartContext>
+        </BrowserRouter>
+        </CartProvider>
+    </>
     
-     
+
   );
 }
 
 export default App
+    {/* 
+      <UseCartContext>
+      <FirebaseContext>
+        <BrowserRouter>      
+          <NavBar/> 
+            
+            <Routes>  
+
+                <Route exact path='/' element={<Home/>}/>                                
+                <Route exact path="/items/:id" element={<ItemDetailContainer/>}/>            
+                <Route exact path="/category/drums/:id" element={<ItemDetailContainer/>}/> 
+                <Route exact path="/category/accesorios/:id" element={<ItemDetailContainer/>}/>
+                <Route exact path="/cart" element={<Cart/>}/> 
+              
+            </Routes>
+
+          <Footer />   
+        </BrowserRouter>
+      </FirebaseContext>
+      </UseCartContext>
+    </>
+     
+  );
+}
+*/}
+

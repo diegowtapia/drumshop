@@ -1,8 +1,7 @@
 // Import the functions you need from the SDKs you need
-//import firebase from "firebase/compat/app";
-//import "firebase/firestore";
+
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, getDoc, updateDoc, doc } from "firebase/firestore";
 //import { getAnalytics } from "firebase/analytics";*/
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -21,15 +20,12 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 export const db = getFirestore(app);
-/*
-export function getFirebase() {
-  return app;
-}
 
-export function getFirestore() {
-  return firebase.firestore(app);
+//Manejar stock
+export const updateStock = async (itemId, quantity) => {
+  const item = await getDoc(doc(db, "items", itemId));
+  await updateDoc(doc(db, "items", itemId), {
+    stock: item.data().stock - quantity,
+  });
 }
-*/
-//export default db;
